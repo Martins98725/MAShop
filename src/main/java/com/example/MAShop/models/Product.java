@@ -20,26 +20,27 @@ public class Product {
     private UUID id;
 
     @NotBlank
-    @Column(name = "NAME", nullable = false, length = 75)
+    @Column(name = "NAME", length = 75)
     private String name;
 
     @NotBlank
-    @Column(name = "DESCRIPTION", nullable = false, length = 75)
+    @Column(name = "DESCRIPTION", length = 75)
     private String description;
     @NotBlank
-    @Column(name = "PRICE", nullable = false, length = 75)
+    @Column(name = "PRICE", length = 75)
     private double price;
 
     @NotBlank
-    @Column(name = "QUANTITY", nullable = false, length = 75)
+    @Column(name = "QUANTITY", length = 75)
     private int quantity;
 
     @NotBlank
-    @Column(name = "IMAGE", nullable = false, length = 75)
+    @Column(name = "IMAGE", length = 75)
     private String image;
 
     @NotBlank
-    @Column(name = "BARCODE", nullable = false, length = 75)
+    @Column(name = "BARCODE", length = 75)
+    //diferenciar os produtos pelo barcode
     private String barcode;
 
     @ManyToOne
@@ -52,4 +53,11 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "STORE_ID")
     )
     private List<Store> stores;
+
+    @PrePersist
+    public void generateUUID() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+    }
 }

@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface UserService {
     List<UserDTOResponse> findAll();
 
-    User save(UserDTOPost user);
+    UserDTOPost save(UserDTOPost user);
 
     Optional<User> findById(UUID id);
 

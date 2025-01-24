@@ -41,4 +41,11 @@ public class Store {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "stores")
     private List<Product> products;
+
+    @PrePersist
+    public void generateUUID() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+    }
 }

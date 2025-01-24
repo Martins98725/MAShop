@@ -5,6 +5,7 @@ import com.example.MAShop.DTOS.response.UserDTOResponse;
 import com.example.MAShop.models.User;
 import com.example.MAShop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RestController("/user")
+@RestController
+@RequestMapping(value = "/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -24,9 +26,10 @@ public class UserController {
     }
     
     @PostMapping("/")
-    public ResponseEntity<User> save(UserDTOPost user){
-        User savedUser = userService.save(user);
-        return ResponseEntity.ok(savedUser);
+    public ResponseEntity<UserDTOPost> save(@RequestBody UserDTOPost user){
+        var userDTOPost = userService.save(user);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(userDTOPost);
     }
     
     @GetMapping("/{id}")
@@ -40,7 +43,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteById(UUID id){
+    public ResponseEntity<User> deleteById(@PathVariable UUID id){
         if(userService.deleteById(id)){
             return ResponseEntity.ok().build();
         }

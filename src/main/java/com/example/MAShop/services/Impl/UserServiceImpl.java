@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserDTOPost userDTOPost) {
+    public UserDTOPost save(UserDTOPost userDTOPost) {
         User newUser = new User();
 
         newUser.setName(userDTOPost.getName());
@@ -42,9 +42,13 @@ public class UserServiceImpl implements UserService {
         newUser.setPhone(userDTOPost.getPhone());
         newUser.setUsername(userDTOPost.getUsername());
         newUser.setZipcode(userDTOPost.getZipcode());
+
         newUser = userRepository.save(newUser);
 
-        return newUser;
+
+
+
+        return userDTOPost.ParseDTOToEntity(newUser);
     }
 
     @Override

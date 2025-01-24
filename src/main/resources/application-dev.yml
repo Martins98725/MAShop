@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: '@project.artifactId@'
+  datasource:
+    url: jdbc:mysql://localhost:3306/MaShop_DB
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update

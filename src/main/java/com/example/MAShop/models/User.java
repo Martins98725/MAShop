@@ -43,7 +43,7 @@ public class User {
     private String phone;
 
     @NotBlank
-    @Column(name = "ADRESS", length = 100)
+    @Column(name = "ADDRESS", length = 100)
     private String address;
 
     @NotBlank
@@ -54,5 +54,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Product> products;
+
+    @PrePersist
+    public void generateUUID() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+    }
 
 }

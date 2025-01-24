@@ -36,13 +36,15 @@ public class UserDTOResponse {
         this.zipcode = user.getZipcode();
         this.role = user.getRole();
 
-        Product product = new Product();
+        this.carshop = user.getProducts();
+
+        /*Product product = new Product();
         product.setId(user.getProducts().get(0).getId());
         product.setName(user.getProducts().get(0).getName());
         product.setPrice(user.getProducts().get(0).getPrice());
         product.setQuantity(user.getProducts().get(0).getQuantity());
         product.setDescription(user.getProducts().get(0).getDescription());
 
-        this.carshop = user.getProducts();
+        this.carshop = user.getProducts();*/
     }
 }
