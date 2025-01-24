@@ -1,7 +1,7 @@
 package com.example.MAShop.services.Impl;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
-import com.example.MAShop.DTOS.response.UserDTOResponse;
+import com.example.MAShop.DTOS.response.UserDTOResponseAll;
 import com.example.MAShop.models.User;
 import com.example.MAShop.repositories.UserRepository;
 import com.example.MAShop.services.UserService;
@@ -21,13 +21,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserDTOResponse> findAll() {
+    public List<UserDTOResponseAll> findAll() {
         List<User> users = userRepository.findAll();
-        List<UserDTOResponse> userDTOResponses = new ArrayList<>();
+        List<UserDTOResponseAll> userDTOResponsAlls = new ArrayList<>();
         for (User user : users) {
-            userDTOResponses.add(new UserDTOResponse(user));
+            userDTOResponsAlls.add(new UserDTOResponseAll(user));
         }
-        return userDTOResponses;
+        return userDTOResponsAlls;
     }
 
     @Override
@@ -44,8 +44,6 @@ public class UserServiceImpl implements UserService {
         newUser.setZipcode(userDTOPost.getZipcode());
 
         newUser = userRepository.save(newUser);
-
-
 
 
         return userDTOPost.ParseDTOToEntity(newUser);
