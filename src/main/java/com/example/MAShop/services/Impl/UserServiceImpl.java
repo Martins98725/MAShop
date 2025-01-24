@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> update(User user, UUID id) {
         if (userRepository.existsById(id)){
+            user.setId(id);
             user = userRepository.save(user);
 
             return Optional.of(user);

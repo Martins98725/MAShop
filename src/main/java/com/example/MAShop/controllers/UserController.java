@@ -39,6 +39,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public Optional<User> update(@RequestBody User user, @PathVariable UUID id){
+        
         return userService.update(user, id);
     }
 
