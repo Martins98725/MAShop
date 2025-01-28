@@ -1,6 +1,7 @@
 package com.example.MAShop.services.Impl;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
+import com.example.MAShop.DTOS.response.UserDTOResponse;
 import com.example.MAShop.DTOS.response.UserDTOResponseAll;
 import com.example.MAShop.models.User;
 import com.example.MAShop.repositories.UserRepository;
@@ -21,17 +22,17 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserDTOResponseAll> findAll() {
+    public List<UserDTOResponse> findAll() {
         List<User> users = userRepository.findAll();
-        List<UserDTOResponseAll> userDTOResponsAlls = new ArrayList<>();
+        List<UserDTOResponse> userDTOResponsAlls = new ArrayList<>();
         for (User user : users) {
-            userDTOResponsAlls.add(new UserDTOResponseAll(user));
+            userDTOResponsAlls.add(new UserDTOResponse(user));
         }
         return userDTOResponsAlls;
     }
 
     @Override
-    public UserDTOPost save(UserDTOPost userDTOPost) {
+    public User save(UserDTOPost userDTOPost) {
         User newUser = new User();
 
         newUser.setName(userDTOPost.getName());
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
         newUser = userRepository.save(newUser);
 
 
-        return userDTOPost.ParseDTOToEntity(newUser);
+        return newUser;
     }
 
     @Override

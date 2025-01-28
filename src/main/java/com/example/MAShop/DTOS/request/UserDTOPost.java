@@ -21,17 +21,4 @@ public class UserDTOPost {
     private String zipcode;
     private String role;
 
-    public UserDTOPost ParseDTOToEntity(User user) {
-        UserDTOPost userDTOPost = new UserDTOPost();
-        userDTOPost.setId(user.getId());
-        userDTOPost.setName(user.getName());
-        userDTOPost.setUsername(user.getUsername());
-        userDTOPost.setPassword(user.getPassword());
-        userDTOPost.setEmail(user.getEmail());
-        userDTOPost.setPhone(user.getPhone());
-        userDTOPost.setAddress(user.getAddress());
-        userDTOPost.setZipcode(user.getZipcode());
-        userDTOPost.setRole(user.getRole());
-        return userDTOPost;
-    }
 }

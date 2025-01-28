@@ -1,5 +1,6 @@
 package com.example.MAShop.DTOS.response;
 
+import com.example.MAShop.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,16 @@ public class UserDTOResponse {
     private String address;
     private String zipcode;
     private String role;
+
+    public UserDTOResponse(User user) {
+        this.id = user.getId();
+        this.name = user.getName();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.email = user.getEmail();
+        this.phone = user.getPhone();
+        this.address = user.getAddress();
+        this.zipcode = user.getZipcode();
+        this.role = user.getRole();
+    }
 }

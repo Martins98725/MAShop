@@ -1,6 +1,7 @@
 package com.example.MAShop.controllers;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
+import com.example.MAShop.DTOS.response.UserDTOResponse;
 import com.example.MAShop.DTOS.response.UserDTOResponseAll;
 import com.example.MAShop.models.User;
 import com.example.MAShop.services.UserService;
@@ -20,13 +21,13 @@ public class UserController {
     private UserService userService;
     
     @GetMapping()
-    public ResponseEntity<List<UserDTOResponseAll>> findAll(){
-        List<UserDTOResponseAll> userDTOResponseAll = userService.findAll();
+    public ResponseEntity<List<UserDTOResponse>> findAll(){
+        List<UserDTOResponse> userDTOResponseAll = userService.findAll();
         return ResponseEntity.ok().body(userDTOResponseAll);
     }
     
     @PostMapping("/")
-    public ResponseEntity<UserDTOPost> saveUser(@RequestBody UserDTOPost user){
+    public ResponseEntity<User> saveUser(@RequestBody UserDTOPost user){
         var userDTOPost = userService.save(user);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userDTOPost);
