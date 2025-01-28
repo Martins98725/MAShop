@@ -3,7 +3,9 @@ package com.example.MAShop.services.Impl;
 import com.example.MAShop.DTOS.request.ProductDTOPost;
 import com.example.MAShop.DTOS.response.ProductDTOResponseAll;
 import com.example.MAShop.models.Product;
+import com.example.MAShop.models.User;
 import com.example.MAShop.repositories.ProductRepository;
+import com.example.MAShop.repositories.UserRepository;
 import com.example.MAShop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public List<ProductDTOResponseAll> findAll() {
         List<Product> products = productRepository.findAll();
@@ -29,7 +34,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDTOPost save(ProductDTOPost productDTOPost) {
+    public Product save(ProductDTOPost productDTOPost) {
+        User user = userRepository.findById(productDTOPost.getUserId()).orElseThrow(() -> new RuntimeException("User Not Found"));
+
+
+
         Product product = new Product();
         //testar
 
@@ -39,16 +48,13 @@ public class ProductServiceImpl implements ProductService {
         product.setQuantity(productDTOPost.getQuantity());
         product.setImage(productDTOPost.getImage());
         product.setBarcode(productDTOPost.getBarcode());
-
-        //vulnerablidade provavelmente
-        product.getUser().setId(productDTOPost.getUserId());
-
+        product.setUser(user);
 
 
         product = productRepository.save(product);
 
 
-        return productDTOPost.ParseDTOToEntity(product);
+        return product;
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface ProductService {
     List<ProductDTOResponseAll> findAll();
 
-    ProductDTOPost save(ProductDTOPost productDTOPost);
+    Product save(ProductDTOPost productDTOPost);
 
     Optional<Product> findById(UUID id);
 

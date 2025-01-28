@@ -26,7 +26,7 @@ public class UserController {
     }
     
     @PostMapping("/")
-    public ResponseEntity<UserDTOPost> save(@RequestBody UserDTOPost user){
+    public ResponseEntity<UserDTOPost> saveUser(@RequestBody UserDTOPost user){
         var userDTOPost = userService.save(user);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userDTOPost);
