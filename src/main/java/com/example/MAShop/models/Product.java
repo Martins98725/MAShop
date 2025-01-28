@@ -43,8 +43,6 @@ public class Product {
     //diferenciar os produtos pelo barcode
     private String barcode;
 
-    @ManyToOne
-    private User user;
 
     @ManyToMany
     @JoinTable(

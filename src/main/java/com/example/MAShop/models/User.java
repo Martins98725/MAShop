@@ -53,9 +53,6 @@ public class User {
 
     private String role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Product> products;
 
     @PrePersist
     public void generateUUID() {

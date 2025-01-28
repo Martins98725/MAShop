@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTOResponseAll {
+public class UserDTOResponseById {
     private UUID id;
     private String name;
     private String username;
@@ -26,7 +26,7 @@ public class UserDTOResponseAll {
 
     private List<Product> carshop;
 
-    public UserDTOResponseAll(User user) {
+    public UserDTOResponseById(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.username = user.getUsername();
@@ -36,19 +36,11 @@ public class UserDTOResponseAll {
         this.address = user.getAddress();
         this.zipcode = user.getZipcode();
         this.role = user.getRole();
-        this.carshop = user.getProducts();
+
+       // user.getProducts().forEach(p -> getCarshop().add(new));
 
         List<ProductDTOResponse> productDTOResponses = new ArrayList<>();
 
 
-
-        /*Product product = new Product();
-        product.setId(user.getProducts().get(0).getId());
-        product.setName(user.getProducts().get(0).getName());
-        product.setPrice(user.getProducts().get(0).getPrice());
-        product.setQuantity(user.getProducts().get(0).getQuantity());
-        product.setDescription(user.getProducts().get(0).getDescription());
-
-        this.carshop = user.getProducts();*/
     }
 }

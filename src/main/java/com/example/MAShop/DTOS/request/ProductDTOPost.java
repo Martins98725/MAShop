@@ -20,5 +20,5 @@ public class ProductDTOPost {
     private int quantity;
     private String image;
     private String barcode;
-    private UUID userId;
+    //private UUID userId;
 }

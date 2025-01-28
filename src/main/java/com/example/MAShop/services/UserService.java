@@ -2,7 +2,6 @@ package com.example.MAShop.services;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
 import com.example.MAShop.DTOS.response.UserDTOResponse;
-import com.example.MAShop.DTOS.response.UserDTOResponseAll;
 import com.example.MAShop.models.User;
 
 import java.util.List;

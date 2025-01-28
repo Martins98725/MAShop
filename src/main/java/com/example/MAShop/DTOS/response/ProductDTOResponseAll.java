@@ -29,13 +29,5 @@ public class ProductDTOResponseAll {
         this.quantity = product.getQuantity();
         this.image = product.getImage();
         this.barcode = product.getBarcode();
-
-        UserDTOResponse user = new UserDTOResponse();
-        user.setId(product.getUser().getId());
-        user.setName(product.getUser().getName());
-        user.setEmail(product.getUser().getEmail());
-        user.setZipcode(product.getUser().getZipcode());
-        user.setAddress(product.getUser().getAddress());
-        this.user = user;
     }
 }

@@ -35,9 +35,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product save(ProductDTOPost productDTOPost) {
-        User user = userRepository.findById(productDTOPost.getUserId()).orElseThrow(() -> new RuntimeException("User Not Found"));
-
-
 
         Product product = new Product();
         //testar
@@ -48,7 +45,6 @@ public class ProductServiceImpl implements ProductService {
         product.setQuantity(productDTOPost.getQuantity());
         product.setImage(productDTOPost.getImage());
         product.setBarcode(productDTOPost.getBarcode());
-        product.setUser(user);
 
 
         product = productRepository.save(product);
