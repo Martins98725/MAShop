@@ -33,14 +33,16 @@ public class ProductServiceImpl implements ProductService {
         Product product = new Product();
         //testar
 
-       /* product.setName(productDTOPost.getName());
+        product.setName(productDTOPost.getName());
         product.setDescription(productDTOPost.getDescription());
         product.setPrice(productDTOPost.getPrice());
         product.setQuantity(productDTOPost.getQuantity());
         product.setImage(productDTOPost.getImage());
-        product.setBarcode(productDTOPost.getBarcode());*/
+        product.setBarcode(productDTOPost.getBarcode());
 
-        productDTOPost.setUserId(product.getUser().getId());
+        //vulnerablidade provavelmente
+        product.getUser().setId(productDTOPost.getUserId());
+
 
 
         product = productRepository.save(product);
@@ -51,16 +53,28 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> findById(UUID id) {
-        return Optional.empty();
+
+        return productRepository.findById(id);
     }
 
     @Override
     public Optional<Product> update(Product product, UUID id) {
+        if (productRepository.existsById(id)) {
+            product.setId(id);
+            productRepository.save(product);
+            return Optional.of(product);
+        }
+
         return Optional.empty();
     }
 
     @Override
     public boolean deleteById(UUID id) {
-        return false;
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return true;
+        }
+
+            return false;
     }
 }
