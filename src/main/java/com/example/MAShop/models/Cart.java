@@ -37,7 +37,7 @@ public class Cart {
             CartItems newItem = new CartItems(this, product, quantity);
             items.add(newItem);
         } else {
-            item.setQuantity(item.getQuantity() + quantity);
+            item.setQuantity(item.getQuantity());
         }
     }
 

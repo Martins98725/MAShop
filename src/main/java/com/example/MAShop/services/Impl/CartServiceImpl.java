@@ -47,7 +47,7 @@ public class CartServiceImpl implements CartService {
         CartItems cartItem = cart.getItems().stream().filter(item -> item.getProduct().getId().equals(productId)).findFirst().orElse(null);
 
         if (cartItem != null) {
-            cartItem.setQuantity(cartItem.getQuantity() + quantity);
+            cartItem.setQuantity(cartItem.getQuantity());
         } else {
             cartItem = new CartItems();
             cartItem.setCart(cart);
