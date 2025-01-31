@@ -15,10 +15,10 @@ public class ProductDTOResponseAll {
     private String name;
     private String description;
     private double price;
-    private int quantity;
+    //private int quantity;
     private String image;
-    private String barcode;
-    private UserDTOResponse user;
+    //private String barcode;
+    //private UserDTOResponse user;
 
 
     public ProductDTOResponseAll(Product product) {
@@ -26,8 +26,6 @@ public class ProductDTOResponseAll {
         this.name = product.getName();
         this.description = product.getDescription();
         this.price = product.getPrice();
-        this.quantity = product.getQuantity();
         this.image = product.getImage();
-        this.barcode = product.getBarcode();
     }
 }

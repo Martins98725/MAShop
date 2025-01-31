@@ -42,9 +42,9 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productDTOPost.getName());
         product.setDescription(productDTOPost.getDescription());
         product.setPrice(productDTOPost.getPrice());
-        product.setQuantity(productDTOPost.getQuantity());
+        //product.setQuantity(productDTOPost.getQuantity());
         product.setImage(productDTOPost.getImage());
-        product.setBarcode(productDTOPost.getBarcode());
+        //product.setBarcode(product.genereteBarcode());
 
 
         product = productRepository.save(product);

@@ -15,5 +15,5 @@ public class ProductDTOResponse {
     private String description;
     private Double price;
     private String image;
-    private String barcode;
+   // private String barcode;
 }

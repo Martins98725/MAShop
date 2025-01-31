@@ -53,6 +53,8 @@ public class User {
 
     private String role;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Cart cart;
 
     @PrePersist
     public void generateUUID() {

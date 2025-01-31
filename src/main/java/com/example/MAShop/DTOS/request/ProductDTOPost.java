@@ -17,8 +17,8 @@ public class ProductDTOPost {
     private String name;
     private String description;
     private double price;
-    private int quantity;
+    //private int quantity;
     private String image;
-    private String barcode;
+    //private String barcode;
     //private UUID userId;
 }

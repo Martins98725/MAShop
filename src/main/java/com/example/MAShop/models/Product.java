@@ -30,18 +30,21 @@ public class Product {
     @Column(name = "PRICE", length = 75)
     private double price;
 
-    @NotBlank
+    /*@NotBlank
     @Column(name = "QUANTITY", length = 75)
-    private int quantity;
+    private int quantity;*/
 
     @NotBlank
     @Column(name = "IMAGE", length = 75)
     private String image;
 
-    @NotBlank
+ /*   @NotBlank
     @Column(name = "BARCODE", length = 75)
     //diferenciar os produtos pelo barcode
-    private String barcode;
+    private Double barcode;*/
+
+    @ManyToOne
+    private Cart cart;
 
 
     @ManyToMany
