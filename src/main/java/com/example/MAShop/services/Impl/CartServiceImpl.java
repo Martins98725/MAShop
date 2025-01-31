@@ -58,7 +58,7 @@ public class CartServiceImpl implements CartService {
         cart.addProduct(product, quantity);
 
         cart = cartRepository.save(cart);
-        // Salva o carrinho atualizado
+
         return new CartDTO(cart);
     }
 }

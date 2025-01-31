@@ -34,10 +34,7 @@ public class Cart {
                 .findFirst()
                 .orElse(null);
         if (item == null) {
-            CartItems newItem = new CartItems(this, product, quantity);
-            items.add(newItem);
-        } else {
-            item.setQuantity(item.getQuantity());
+            items.add(new CartItems(this, product, quantity));
         }
     }
 
