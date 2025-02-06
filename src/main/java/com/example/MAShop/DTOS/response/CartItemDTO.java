@@ -13,16 +13,15 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartItemDTO {
-    private UUID productId;
-    private String productName;
+    private UUID id;
     private int quantity;
-    private double price;
+    private ProductDTOResponse product;
 
 
-    public CartItemDTO(CartItems cartItems) {
+    /*public CartItemDTO(CartItems cartItems) {
         this.productId = cartItems.getProduct().getId();
         this.productName = cartItems.getProduct().getName();
         this.quantity = cartItems.getQuantity();
         this.price = cartItems.getProduct().getPrice();
-    }
+    }*/
 }

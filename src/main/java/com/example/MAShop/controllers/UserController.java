@@ -2,6 +2,7 @@ package com.example.MAShop.controllers;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
 import com.example.MAShop.DTOS.response.UserDTOResponse;
+import com.example.MAShop.DTOS.response.UserDTOResponseById;
 import com.example.MAShop.models.User;
 import com.example.MAShop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,14 @@ public class UserController {
     }
     
     @PostMapping("/")
-    public ResponseEntity<User> saveUser(@RequestBody UserDTOPost user){
+    public ResponseEntity<UserDTOPost> saveUser(@RequestBody UserDTOPost user){
         var userDTOPost = userService.save(user);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userDTOPost);
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<User>  getById(@PathVariable UUID id){
+    public ResponseEntity<UserDTOResponseById>  getById(@PathVariable UUID id){
         return userService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 

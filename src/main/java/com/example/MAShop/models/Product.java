@@ -2,15 +2,14 @@ package com.example.MAShop.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TB_PRODUCT")
@@ -30,7 +29,7 @@ public class Product {
     @Column(name = "PRICE", length = 75)
     private double price;
 
-    /*@NotBlank
+   /* @NotBlank
     @Column(name = "QUANTITY", length = 75)
     private int quantity;*/
 

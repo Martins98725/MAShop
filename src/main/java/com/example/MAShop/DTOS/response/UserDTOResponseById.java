@@ -1,16 +1,18 @@
 package com.example.MAShop.DTOS.response;
 
+import com.example.MAShop.models.Cart;
+import com.example.MAShop.models.CartItems;
 import com.example.MAShop.models.Product;
 import com.example.MAShop.models.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTOResponseById {
@@ -23,10 +25,9 @@ public class UserDTOResponseById {
     private String address;
     private String zipcode;
     private String role;
+    private CartDTO cart;
 
-    private List<Product> carshop;
-
-    public UserDTOResponseById(User user) {
+    /*public UserDTOResponseById(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.username = user.getUsername();
@@ -37,10 +38,17 @@ public class UserDTOResponseById {
         this.zipcode = user.getZipcode();
         this.role = user.getRole();
 
-       // user.getProducts().forEach(p -> getCarshop().add(new));
+        Cart cartEntity = new Cart();
+        cartEntity.setId(user.getCart().getId());
+        cartEntity.getItems().forEach(item -> item.setCart(cartEntity));
 
-        List<ProductDTOResponse> productDTOResponses = new ArrayList<>();
+        CartDTO dto = new CartDTO();
+
+        dto.setId(cartEntity.getId());
 
 
-    }
+
+
+    }*/
+
 }

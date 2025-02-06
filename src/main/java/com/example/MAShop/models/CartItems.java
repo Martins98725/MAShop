@@ -2,14 +2,13 @@ package com.example.MAShop.models;
 
 //import com.example.MAShop.DTOS.response.CartDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TB_CAR_ITEMS")
@@ -29,10 +28,5 @@ public class CartItems {
 
     private int quantity;
 
-    public CartItems(Cart cart,Product product, int quantity) {
-        this.cart = cart;
-        this.product = product;
-        this.quantity = quantity;
-    }
 
 }

@@ -2,6 +2,8 @@ package com.example.MAShop.services.Impl;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
 import com.example.MAShop.DTOS.response.UserDTOResponse;
+import com.example.MAShop.DTOS.response.UserDTOResponseById;
+import com.example.MAShop.mappers.UserMapper;
 import com.example.MAShop.models.User;
 import com.example.MAShop.repositories.UserRepository;
 import com.example.MAShop.services.UserService;
@@ -31,27 +33,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User save(UserDTOPost userDTOPost) {
-        User newUser = new User();
+    public UserDTOPost save(UserDTOPost userDTOPost) {
+        User user = UserMapper.INSTANCE.userDTOPostToUser(userDTOPost);
 
-        newUser.setName(userDTOPost.getName());
-        newUser.setEmail(userDTOPost.getEmail());
-        newUser.setPassword(userDTOPost.getPassword());
-        newUser.setRole(userDTOPost.getRole());
-        newUser.setAddress(userDTOPost.getAddress());
-        newUser.setPhone(userDTOPost.getPhone());
-        newUser.setUsername(userDTOPost.getUsername());
-        newUser.setZipcode(userDTOPost.getZipcode());
+        user = userRepository.save(user);
 
-        newUser = userRepository.save(newUser);
-
-
-        return newUser;
+        return UserMapper.INSTANCE.userToUserDTOPost(user);
     }
 
     @Override
-    public Optional<User> findById(UUID id) {
-        return userRepository.findById(id);
+    public Optional<UserDTOResponseById> findById(UUID id) {
+
+        User user = userRepository.findById(id).orElse(null);
+
+        return Optional.of(UserMapper.INSTANCE.userToUserDtoResponseById(user));
     }
 
     @Override
