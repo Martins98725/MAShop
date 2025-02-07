@@ -14,14 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CartItemDTO {
     private UUID id;
-    private int quantity;
     private ProductDTOResponse product;
+    private int quantity;
 
-
-    /*public CartItemDTO(CartItems cartItems) {
-        this.productId = cartItems.getProduct().getId();
-        this.productName = cartItems.getProduct().getName();
-        this.quantity = cartItems.getQuantity();
-        this.price = cartItems.getProduct().getPrice();
-    }*/
 }
