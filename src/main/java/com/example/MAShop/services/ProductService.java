@@ -11,11 +11,11 @@ import java.util.UUID;
 public interface ProductService {
     List<ProductDTOResponseAll> findAll();
 
-    Product save(ProductDTOPost productDTOPost);
+    ProductDTOPost save(ProductDTOPost productDTOPost);
 
-    Optional<Product> findById(UUID id);
+    Optional<ProductDTOResponseAll> findById(UUID id);
 
-    Optional<Product> update(Product product, UUID id);
+    Optional<ProductDTOResponseAll> update(ProductDTOResponseAll product, UUID id);
 
     boolean deleteById(UUID id);
 }

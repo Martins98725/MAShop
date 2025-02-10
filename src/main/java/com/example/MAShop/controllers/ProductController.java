@@ -21,8 +21,8 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/")
-    public ResponseEntity<Product> addProduct(@RequestBody ProductDTOPost product) {
-        Product productSaved = productService.save(product);
+    public ResponseEntity<ProductDTOPost> addProduct(@RequestBody ProductDTOPost product) {
+        ProductDTOPost productSaved = productService.save(product);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(productSaved);
     }
@@ -34,12 +34,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product>  getById(@PathVariable UUID id){
+    public ResponseEntity<ProductDTOResponseAll>  getById(@PathVariable UUID id){
         return productService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public Optional<Product> update(@RequestBody Product product, @PathVariable UUID id){
+    public Optional<ProductDTOResponseAll> update(@RequestBody ProductDTOResponseAll product, @PathVariable UUID id){
 
         return productService.update(product, id);
     }
