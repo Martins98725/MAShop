@@ -36,30 +36,23 @@ public class CartServiceImpl implements CartService {
         if (quantity <= 0) {
             throw new IllegalArgumentException("Quantity must be greater than zero");
         }
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = getUserIfExist(userId);
 
-        Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+        Product product = getProductIfExist(productId);
 
         Cart cart = user.getCart();
-        if (cart == null) {
-            cart = new Cart();
-            cart.setUser(user);
-            cart.setItems(new ArrayList<>());
-            user.setCart(cart);
-        }
+        cart = createCart(cart, user);
 
-        /*Cart cart = cartRepository.findByUserId(userId).orElseGet(() ->
-        {
-            Cart newCart = new Cart();
-            newCart.setUser(user);
-            return cartRepository.save(newCart);
-        });*/
+        CartItems cartItem = getCartItem(productId, cart);
 
-        CartItems cartItem = cart.getItems().stream()
-                .filter(item -> item.getProduct().getId().equals(productId))
-                .findFirst()
-                .orElse(null);
+        createCarItems(quantity, cartItem, cart, product);
 
+        cart = cartRepository.save(cart);
+
+        return UserMapper.INSTANCE.cartToCartDTO(cart);
+    }
+
+    private static void createCarItems(int quantity, CartItems cartItem, Cart cart, Product product) {
         if (cartItem != null) {
             cartItem.setQuantity(cartItem.getQuantity());
         } else {
@@ -69,9 +62,31 @@ public class CartServiceImpl implements CartService {
             cartItem.setQuantity(quantity);
             cart.getItems().add(cartItem);
         }
+    }
 
-        cart = cartRepository.save(cart);
+    private static Cart createCart(Cart cart, User user) {
+        if (cart == null) {
+            cart = new Cart();
+            cart.setUser(user);
+            cart.setItems(new ArrayList<>());
+            user.setCart(cart);
+        }
+        return cart;
+    }
 
-        return UserMapper.INSTANCE.cartToCartDTO(cart);
+    private Product getProductIfExist(UUID productId) {
+        return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+    }
+
+    private User getUserIfExist(UUID userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        return user;
+    }
+
+    private static CartItems getCartItem(UUID productId, Cart cart) {
+        return cart.getItems().stream()
+                .filter(item -> item.getProduct().getId().equals(productId))
+                .findFirst()
+                .orElse(null);
     }
 }
