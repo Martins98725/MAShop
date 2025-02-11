@@ -7,6 +7,7 @@ import com.example.MAShop.DTOS.response.StoreDTO;
 import com.example.MAShop.models.Product;
 import com.example.MAShop.models.Store;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -15,9 +16,12 @@ import java.util.List;
 public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
+    @Mapping(target = "store.id", source = "storeId")
     Product productToProductDTOPost(ProductDTOPost productDTOPost);
 
+    @Mapping(target = "storeId", source = "store.id")
     ProductDTOPost productToProductDTOPost(Product product);
+
 
     Product productUpdateDTOToProduct(ProductUpdateDTO productUpdateDTO);
 

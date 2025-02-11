@@ -39,7 +39,7 @@ public class Store {
     @Column(name = "CNPJ", nullable = false, length = 75)
     private String cnpj;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "stores")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "store")
     private List<Product> products;
 
     @PrePersist

@@ -46,13 +46,9 @@ public class Product {
     private Cart cart;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "PRODUCT_STORE",
-            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "STORE_ID")
-    )
-    private List<Store> stores;
+    @ManyToOne
+    @JoinColumn(name = "STORE_ID")
+    private Store store;
 
     @PrePersist
     public void generateUUID() {
