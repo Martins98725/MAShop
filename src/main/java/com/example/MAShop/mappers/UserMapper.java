@@ -1,10 +1,8 @@
 package com.example.MAShop.mappers;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
-import com.example.MAShop.DTOS.response.CartDTO;
-import com.example.MAShop.DTOS.response.CartItemDTO;
-import com.example.MAShop.DTOS.response.ProductDTOResponse;
-import com.example.MAShop.DTOS.response.UserDTOResponseById;
+import com.example.MAShop.DTOS.request.UserUpdateDTO;
+import com.example.MAShop.DTOS.response.*;
 import com.example.MAShop.models.Cart;
 import com.example.MAShop.models.CartItems;
 import com.example.MAShop.models.Product;
@@ -12,6 +10,8 @@ import com.example.MAShop.models.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -31,6 +31,13 @@ public interface UserMapper {
     CartItemDTO productToCartItemDTO(CartItems cartItems);
 
     ProductDTOResponse productToProductDTOResponse(Product product);
+
+    List<UserDTOResponse> usersToUserDTOResponses(List<User> users);
+    List<User> userDTOResponsesToUsers(List<UserDTOResponse> userDTOResponses);
+
+    UserUpdateDTO userToUserUpdateDTO(User user);
+
+    User updateUserDTOToUser(UserUpdateDTO userUpdateDTO);
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.MAShop.controllers;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
+import com.example.MAShop.DTOS.request.UserUpdateDTO;
 import com.example.MAShop.DTOS.response.UserDTOResponse;
 import com.example.MAShop.DTOS.response.UserDTOResponseById;
 import com.example.MAShop.models.User;
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public Optional<User> update(@RequestBody User user, @PathVariable UUID id){
+    public Optional<UserUpdateDTO> update(@RequestBody UserUpdateDTO user, @PathVariable UUID id){
 
         return userService.update(user, id);
     }

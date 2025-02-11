@@ -23,8 +23,8 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public List<StoreDTO> findAll() {
-        List<Store> stores;
-        stores = storeRepository.findAll();
+        List<Store> stores = storeRepository.findAll();
+
         return StoreMapper.INSTANCE.storeDTOListToStoreDTOList(stores);
     }
 

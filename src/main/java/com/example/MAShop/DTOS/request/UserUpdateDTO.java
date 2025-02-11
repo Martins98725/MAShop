@@ -1,6 +1,5 @@
-package com.example.MAShop.DTOS.response;
+package com.example.MAShop.DTOS.request;
 
-import com.example.MAShop.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTOResponse {
+public class UserUpdateDTO {
     private UUID id;
     private String name;
     private String username;

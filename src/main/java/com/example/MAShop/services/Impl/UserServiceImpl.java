@@ -1,6 +1,7 @@
 package com.example.MAShop.services.Impl;
 
 import com.example.MAShop.DTOS.request.UserDTOPost;
+import com.example.MAShop.DTOS.request.UserUpdateDTO;
 import com.example.MAShop.DTOS.response.UserDTOResponse;
 import com.example.MAShop.DTOS.response.UserDTOResponseById;
 import com.example.MAShop.mappers.UserMapper;
@@ -25,11 +26,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTOResponse> findAll() {
         List<User> users = userRepository.findAll();
-        List<UserDTOResponse> userDTOResponsAlls = new ArrayList<>();
-        for (User user : users) {
-            userDTOResponsAlls.add(new UserDTOResponse(user));
-        }
-        return userDTOResponsAlls;
+
+        return UserMapper.INSTANCE.usersToUserDTOResponses(users);
     }
 
     @Override
@@ -50,12 +48,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> update(User user, UUID id) {
+    public Optional<UserUpdateDTO> update(UserUpdateDTO userUpdateDTO, UUID id) {
         if (userRepository.existsById(id)){
+            User user = UserMapper.INSTANCE.updateUserDTOToUser(userUpdateDTO);
             user.setId(id);
             user = userRepository.save(user);
 
-            return Optional.of(user);
+            return Optional.of(UserMapper.INSTANCE.userToUserUpdateDTO(user));
         }
         return Optional.empty();
     }

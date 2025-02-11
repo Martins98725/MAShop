@@ -21,9 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDTOResponseAll> findAll() {
-        List<Product> product;
-
-        product = productRepository.findAll();
+        List<Product> product = productRepository.findAll();
 
         return ProductMapper.INSTANCE.productListToProductDTOResponseAllList(product);
     }
