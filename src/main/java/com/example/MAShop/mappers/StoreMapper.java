@@ -4,6 +4,7 @@ import com.example.MAShop.DTOS.request.StoreDTOPost;
 import com.example.MAShop.DTOS.request.StoreDTOUpdate;
 import com.example.MAShop.DTOS.response.StoreDTO;
 import com.example.MAShop.DTOS.response.StoreDTOById;
+import com.example.MAShop.DTOS.response.StoreDTOProduct;
 import com.example.MAShop.models.Store;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -32,4 +33,6 @@ public interface StoreMapper {
     Store storeDTOUpdateToStore(StoreDTOUpdate storeDTOUpdate);
 
     StoreDTOUpdate storeDTOUpdateToStore(Store store);
+
+    Store storeDTOProductToStore(StoreDTOProduct storeDTOProduct);
 }

@@ -19,6 +19,6 @@ public class ProductDTOResponseAll {
     private String description;
     private double price;
     private String image;
-    private StoreDTO store;
+    private StoreDTOProduct store;
 
 }
