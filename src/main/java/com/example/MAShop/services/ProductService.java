@@ -14,9 +14,9 @@ public interface ProductService {
 
     ProductDTOPost save(ProductDTOPost productDTOPost);
 
-    Optional<ProductUpdateDTO> findById(UUID id);
+    Optional<ProductDTOResponseAll> findById(UUID id);
 
-    Optional<ProductDTOResponseAll> update(ProductDTOResponseAll product, UUID id);
+    Optional<ProductUpdateDTO> update(ProductUpdateDTO product, UUID id);
 
     boolean deleteById(UUID id);
 }

@@ -35,12 +35,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductUpdateDTO>  getById(@PathVariable UUID id){
+    public ResponseEntity<ProductDTOResponseAll>  getById(@PathVariable UUID id){
         return productService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
-    public Optional<ProductDTOResponseAll> update(@RequestBody ProductDTOResponseAll product, @PathVariable UUID id){
+    public Optional<ProductUpdateDTO> update(@RequestBody ProductUpdateDTO product, @PathVariable UUID id){
 
         return productService.update(product, id);
     }

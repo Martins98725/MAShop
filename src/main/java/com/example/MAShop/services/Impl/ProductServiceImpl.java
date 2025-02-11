@@ -39,23 +39,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<ProductUpdateDTO> findById(UUID id) {
-        Product product = ProductMapper.INSTANCE.productUpdateDTOToProduct(new ProductUpdateDTO());
+    public Optional<ProductDTOResponseAll> findById(UUID id) {
+        Product product = ProductMapper.INSTANCE.productDTOResponseToProduct(new ProductDTOResponseAll());
 
         product.setId(id);
         product = productRepository.findById(id).orElse(null);
 
 
-        return Optional.of(ProductMapper.INSTANCE.productToProductUpdateDTO(product));
+        return Optional.of(ProductMapper.INSTANCE.productToProductDTOResponseAll(product));
     }
 
     @Override
-    public Optional<ProductDTOResponseAll> update(ProductDTOResponseAll product, UUID id) {
+    public Optional<ProductUpdateDTO> update(ProductUpdateDTO productUpdateDTO, UUID id) {
         if (productRepository.existsById(id)) {
-            Product product1 = ProductMapper.INSTANCE.productDTOResponseToProduct(product);
-            product1.setId(id);
-            product1 = productRepository.save(product1);
-            return Optional.of(ProductMapper.INSTANCE.productToProductDTOResponseAll(product1));
+            Product product = ProductMapper.INSTANCE.productUpdateDTOToProduct(productUpdateDTO);
+            product.setId(id);
+            product = productRepository.save(product);
+            return Optional.of(ProductMapper.INSTANCE.productToProductUpdateDTO(product));
         }
 
         return Optional.empty();
