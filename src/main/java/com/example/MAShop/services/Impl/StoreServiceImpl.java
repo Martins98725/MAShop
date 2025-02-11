@@ -37,9 +37,8 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Optional<StoreDTOById> findById(UUID id) {
-        StoreDTOById storeDTO = new StoreDTOById();
 
-        Store store = StoreMapper.INSTANCE.storeDTOByIdToStore(storeDTO);
+        Store store = StoreMapper.INSTANCE.storeDTOByIdToStore(new StoreDTOById());
         store.setId(id);
 
         store = storeRepository.findById(id).orElse(null);
