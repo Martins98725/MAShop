@@ -2,6 +2,7 @@ package com.example.MAShop.controllers;
 
 import com.example.MAShop.DTOS.request.ProductDTOPost;
 import com.example.MAShop.DTOS.response.ProductDTOResponseAll;
+import com.example.MAShop.DTOS.response.ProductUpdateDTO;
 import com.example.MAShop.models.Product;
 import com.example.MAShop.models.User;
 import com.example.MAShop.services.ProductService;
@@ -34,7 +35,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTOResponseAll>  getById(@PathVariable UUID id){
+    public ResponseEntity<ProductUpdateDTO>  getById(@PathVariable UUID id){
         return productService.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 

@@ -2,6 +2,7 @@ package com.example.MAShop.mappers;
 
 import com.example.MAShop.DTOS.request.ProductDTOPost;
 import com.example.MAShop.DTOS.response.ProductDTOResponseAll;
+import com.example.MAShop.DTOS.response.ProductUpdateDTO;
 import com.example.MAShop.DTOS.response.StoreDTO;
 import com.example.MAShop.models.Product;
 import com.example.MAShop.models.Store;
@@ -17,6 +18,10 @@ public interface ProductMapper {
     Product productToProductDTOPost(ProductDTOPost productDTOPost);
 
     ProductDTOPost productToProductDTOPost(Product product);
+
+    Product productUpdateDTOToProduct(ProductUpdateDTO productUpdateDTO);
+
+    ProductUpdateDTO productToProductUpdateDTO(Product product);
 
     List<ProductDTOResponseAll> productListToProductDTOResponseAllList(List<Product> product);
 

@@ -2,6 +2,7 @@ package com.example.MAShop.services.Impl;
 
 import com.example.MAShop.DTOS.request.ProductDTOPost;
 import com.example.MAShop.DTOS.response.ProductDTOResponseAll;
+import com.example.MAShop.DTOS.response.ProductUpdateDTO;
 import com.example.MAShop.mappers.ProductMapper;
 import com.example.MAShop.models.Product;
 import com.example.MAShop.repositories.ProductRepository;
@@ -38,14 +39,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<ProductDTOResponseAll> findById(UUID id) {
-        Product product = ProductMapper.INSTANCE.productDTOResponseToProduct(new ProductDTOResponseAll());
+    public Optional<ProductUpdateDTO> findById(UUID id) {
+        Product product = ProductMapper.INSTANCE.productUpdateDTOToProduct(new ProductUpdateDTO());
 
         product.setId(id);
         product = productRepository.findById(id).orElse(null);
 
 
-        return Optional.of(ProductMapper.INSTANCE.productToProductDTOResponseAll(product));
+        return Optional.of(ProductMapper.INSTANCE.productToProductUpdateDTO(product));
     }
 
     @Override
