@@ -33,7 +33,6 @@ public interface UserMapper {
     ProductDTOResponse productToProductDTOResponse(Product product);
 
     List<UserDTOResponse> usersToUserDTOResponses(List<User> users);
-    List<User> userDTOResponsesToUsers(List<UserDTOResponse> userDTOResponses);
 
     UserUpdateDTO userToUserUpdateDTO(User user);
 
