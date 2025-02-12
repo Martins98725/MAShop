@@ -17,5 +17,4 @@ public class StoreDTO {
     private String phone;
     private String email;
     private String cnpj;
-    private List<ProductDTOResponse> products;
 }
