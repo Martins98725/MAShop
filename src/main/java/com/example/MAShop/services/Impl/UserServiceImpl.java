@@ -4,6 +4,7 @@ import com.example.MAShop.DTOS.request.UserDTOPost;
 import com.example.MAShop.DTOS.request.UserUpdateDTO;
 import com.example.MAShop.DTOS.response.UserDTOResponse;
 import com.example.MAShop.DTOS.response.UserDTOResponseById;
+import com.example.MAShop.execeptions.BusinessException;
 import com.example.MAShop.mappers.UserMapper;
 import com.example.MAShop.models.User;
 import com.example.MAShop.repositories.UserRepository;
@@ -40,9 +41,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserDTOResponseById> findById(UUID id) {
+    public Optional<UserDTOResponseById> findById(UUID id) throws BusinessException {
 
-        User user = userRepository.findById(id).orElse(null);
+        User user = userRepository.findById(id).orElseThrow(() -> new BusinessException("User dosen't exist"));
 
         return Optional.of(UserMapper.INSTANCE.userToUserDtoResponseById(user));
     }
