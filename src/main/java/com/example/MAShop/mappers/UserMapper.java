@@ -24,10 +24,10 @@ public interface UserMapper {
     @Mapping(source = "cart", target = "cart")
     UserDTOResponseById userToUserDtoResponseById(User user);
 
+    @Mapping(target = "cartId", source = "id")
     @Mapping(source = "items", target = "items")
     CartDTO cartToCartDTO(Cart cart);
 
-    @Mapping(target = "id", source = "product.id")
     CartItemDTO productToCartItemDTO(CartItems cartItems);
 
     ProductDTOResponse productToProductDTOResponse(Product product);

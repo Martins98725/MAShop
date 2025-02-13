@@ -12,6 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartDTO {
-    private UUID id;
+    private UUID cartId;
     private List<CartItemDTO> items;
 }
