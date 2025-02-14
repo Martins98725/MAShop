@@ -32,8 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTOPost save(UserDTOPost userDTOPost) {
+    public UserDTOPost save(UserDTOPost userDTOPost) throws BusinessException {
         User user = UserMapper.INSTANCE.userDTOPostToUser(userDTOPost);
+        /*if (user.getName().isEmpty()){
+            throw new BusinessException("this field not must be empty");
+        }   */
 
         user = userRepository.save(user);
 
@@ -43,13 +46,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserDTOResponseById> findById(UUID id) throws BusinessException {
 
-        User user = userRepository.findById(id).orElseThrow(() -> new BusinessException("User dosen't exist"));
+        User user = userRepository.findById(id).orElseThrow(() -> new BusinessException("User doesn't exist"));
 
         return Optional.of(UserMapper.INSTANCE.userToUserDtoResponseById(user));
     }
 
     @Override
-    public Optional<UserUpdateDTO> update(UserUpdateDTO userUpdateDTO, UUID id) {
+    public Optional<UserUpdateDTO> update(UserUpdateDTO userUpdateDTO, UUID id) throws BusinessException {
         if (userRepository.existsById(id)){
             User user = UserMapper.INSTANCE.updateUserDTOToUser(userUpdateDTO);
             user.setId(id);
@@ -57,7 +60,9 @@ public class UserServiceImpl implements UserService {
 
             return Optional.of(UserMapper.INSTANCE.userToUserUpdateDTO(user));
         }
-        return Optional.empty();
+        else {
+            throw new BusinessException("User doesn't exist");
+        }
     }
 
     @Override

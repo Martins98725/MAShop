@@ -22,34 +22,36 @@ public class User {
     private UUID id;
 
     @NotBlank
-    @Column(name = "NAME", length = 75)
+    @Column(name = "NAME", length = 75, nullable = false)
     private String name;
 
     @NotBlank
-    @Column(name = "USERNAME", unique = true, length = 75)
+    @Column(name = "USERNAME", unique = true, length = 75, nullable = false)
     private String username;
 
     @NotBlank
-    @Column(name = "PASSWORD", length = 15)
+    @Column(name = "PASSWORD", length = 15, nullable = false)
     private String password;
 
     @Email
     @NotBlank
-    @Column(name = "EMAIL", unique = true, length = 75)
+    @Column(name = "EMAIL", unique = true, length = 75, nullable = false)
     private String email;
 
     @NotBlank
-    @Column(name = "PHONE", length = 9)
+    @Column(name = "PHONE", length = 9, nullable = false)
     private String phone;
 
     @NotBlank
-    @Column(name = "ADDRESS", length = 100)
+    @Column(name = "ADDRESS", length = 100, nullable = false)
     private String address;
 
     @NotBlank
-    @Column(name = "ZIPCODE", length = 10)
+    @Column(name = "ZIPCODE", length = 10, nullable = false)
     private String zipcode;
 
+    @NotBlank
+    @Column(name = "ROLE", length = 10, nullable = false)
     private String role;
 
 

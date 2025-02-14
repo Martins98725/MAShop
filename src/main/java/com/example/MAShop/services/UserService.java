@@ -14,11 +14,11 @@ import java.util.UUID;
 public interface UserService {
     List<UserDTOResponse> findAll();
 
-    UserDTOPost save(UserDTOPost user);
+    UserDTOPost save(UserDTOPost user) throws BusinessException;
 
     Optional<UserDTOResponseById> findById(UUID id) throws BusinessException;
 
-    Optional<UserUpdateDTO> update(UserUpdateDTO user, UUID id);
+    Optional<UserUpdateDTO> update(UserUpdateDTO user, UUID id) throws BusinessException;
 
     boolean deleteById(UUID id);
 }
